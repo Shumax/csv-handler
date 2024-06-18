@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "A api nodejs to handle with data file .csv",
+  "main": "www.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shumax/shawandpartners.git"
+  },
+  "author": "Max Castro <maxcastro.mv@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shumax/shawandpartners/issues"
+  },
+  "homepage": "https://github.com/Shumax/shawandpartners#readme"
+}
