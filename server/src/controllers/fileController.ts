@@ -1,7 +1,6 @@
-import fs from 'fs';
-import { fileURLToPath } from 'url';
-import path, { join } from 'path';
-import { IncomingMessage, ServerResponse } from 'http';
+import fs from 'node:fs';
+import path, { join } from 'node:path';
+import { IncomingMessage, ServerResponse } from 'node:http';
 import sendResponse from '../utils/response';
 
 export default function handleFileUpload(req: IncomingMessage, res: ServerResponse) {
@@ -15,10 +14,10 @@ export default function handleFileUpload(req: IncomingMessage, res: ServerRespon
 
   req.on('end', () => {
     const file = Buffer.concat(data).toString();
+    
+    if (!file) return sendResponse(res, 500, { message: 'Error: Empty request!' } );
 
-    if (!file) return sendResponse(res, 400, 'Error: Empty request!');
-
-    if (!file.includes('Content-Type: text/csv')) return sendResponse(res, 400, 'Error: Type file!');
+    if (!file.includes('Content-Type: text/csv')) return sendResponse(res, 500, { message: 'Error: Type file!' } );
 
     const startDelimiter = 'Content-Type: text/csv';
     const endDelimiter = '----------------------------';
@@ -51,15 +50,15 @@ export default function handleFileUpload(req: IncomingMessage, res: ServerRespon
     fs.writeFile(filename, JSON.stringify(result), (err) => {
       if (err) {
         console.error('Error saving file:', err);
-        sendResponse(res, 500, 'Error saving file!');
+        sendResponse(res, 500, { message: 'Error saving file!' });
       } else {
-        sendResponse(res, 201, { msg: 'Success: uploaded!', filename });
+        sendResponse(res, 200, { message: 'The file was uploaded successfully!' });
       }
     });
   });
 
   req.on('error', (error) => {
     console.error('Request error:', error);
-    sendResponse(res, 500, 'Error in request');
+    sendResponse(res, 500, { message: 'Error in request' });
   });
 }

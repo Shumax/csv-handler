@@ -1,5 +1,6 @@
-import { URL } from 'url';
-import { IncomingMessage, ServerResponse } from 'http';
+import { URL } from 'node:url';
+import { IncomingMessage, ServerResponse } from 'node:http';
+
 import handleFileUpload from './controllers/fileController';
 import handleSearch from './controllers/searchController';
 import sendResponse from './utils/response';
@@ -11,8 +12,8 @@ export default async function handleRequest(req: IncomingMessage, res: ServerRes
     handleFileUpload(req, res);
   } else if (pathname === '/api/users' && req.method === 'GET') {
     const query = searchParams.get('q');
-    handleSearch(req, res, query);
+    handleSearch(res, query);
   } else {
-    sendResponse(res, 404, 'Error: Not found!');
+    sendResponse(res, 501, { message: 'Not implemented!'});
   }
 }

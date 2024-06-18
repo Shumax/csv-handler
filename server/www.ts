@@ -1,4 +1,5 @@
 import { createServer } from 'node:http';
+
 import handleRequest from './src/server';
 
 const port = process.env.PORT || 3000;

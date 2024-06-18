@@ -1,26 +1,29 @@
-import path, { join } from 'path';
-import { readFileSync } from 'fs';
-import { IncomingMessage, ServerResponse } from 'http';
+import path, { join } from 'node:path';
+import { readFileSync } from 'node:fs';
+import { IncomingMessage, ServerResponse } from 'node:http';
 import sendResponse from '../utils/response';
 
 const __dirname = path.resolve();
 
 const data: { [key: string]: string }[] = JSON.parse(readFileSync(join(__dirname, '/public/dataUploads.json'), 'utf8')) || [];
 
-export default function handleSearch(req: IncomingMessage, res: ServerResponse, query: string | null) {
+export default function handleSearch( res: ServerResponse, query: string ) {
   try {
-    if (!query) throw 'Error: Empty query!';
+    if (!query) throw { message: 'Empty query!' };
 
     const results: { [key: string]: string }[] = [];
 
     data.filter((row) => {
-      for (const value of Object.values(row)) {
-        if (value.toLowerCase().includes(query.toLowerCase())) results.push(row);
+      for(const value of Object.values(row)) {
+        if(value.toLowerCase().includes(query.toLowerCase())) return results.push(row);
       }
     });
 
-    return sendResponse(res, 202, results);
+    if(!results.length) throw { message: 'User not found!' }; 
+
+    return sendResponse(res, 200, { data: results });
+
   } catch (err) {
-    return sendResponse(res, 400, err);
+    return sendResponse(res, 500, err);
   }
 }

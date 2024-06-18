@@ -1,4 +1,4 @@
-import { ServerResponse } from 'http';
+import { ServerResponse } from 'node:http';
 
 export default function sendResponse(res: ServerResponse, statusCode: number, data: any) {
   res.writeHead(statusCode, { 'Content-Type': 'application/json' });
