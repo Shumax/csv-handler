@@ -14,7 +14,19 @@ export default function Upload() {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const fileUploaded = event.target.files?.[0];
 
-    console.log(fileUploaded)
+    if (fileUploaded) {
+      const formData = new FormData();
+      formData.append("file", fileUploaded);
+
+      fetch('http://localhost:3000/api/files', {
+        method: "POST",
+        body: formData,
+      })
+        .then(async response => console.log(await response.json()))
+        .catch(error => console.log(error));
+
+      event.target.value = '';
+    }
   };
 
   return <>
