@@ -9,7 +9,11 @@ type UserProps = {
   favorite_sport: string;
 }
 
-export default function Grid() {
+interface GridProps  {
+  searchTerm: string;
+}
+
+export default function Grid({ searchTerm }: GridProps ) {
   const [dataGrid, setDataGrid] = useState<UserProps[]>([]);
 
   useEffect(() => {
@@ -21,23 +25,34 @@ export default function Grid() {
      .catch(error => console.log(error));
   }, []);
 
+  const filteredData = searchTerm ? dataGrid.filter((user) => {
+    console.log(user.name.toLowerCase(), searchTerm.toLowerCase())
+
+    return (
+      user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.country.toString().includes(searchTerm) ||
+      user.favorite_sport.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }) : dataGrid;
+
   return <>
     <section
       className='
-          grid
-          grid-cols-4	
-          max-md:grid-cols-2	
-          max-sm:grid-cols-1
-          gap-8
-          lg:gap-8
+        grid
+        grid-cols-4	
+        max-md:grid-cols-2	
+        max-sm:grid-cols-1
+        gap-8
+        lg:gap-8
 
-          p-4
-          w-full
-          h-full
-        '
+        p-4
+        w-full
+        h-full
+      '
     >
       {
-        dataGrid?.map((user, index) => (
+        filteredData?.map((user, index) => (
           <div
             key={index}
             className='

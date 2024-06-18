@@ -1,28 +1,26 @@
 
+import Filter from "./components/Filter";
 import Upload from "./components/Upload";
 
-export default function Search() {
+interface SearchProps {
+  searchTerm: string;
+  setSearchTerm: (term: string) => void;
+}
+
+export default function Search({ searchTerm, setSearchTerm }: SearchProps) {
   return <>
     <section
       className='w-full'
     >
       <nav
         className='
-            px-4
-            py-2  
-            flex
-            justify-between
-          '
+          px-4
+          py-2  
+          flex
+          justify-between
+        '
       >
-        <input placeholder='Search'
-          className='
-              px-3 py-1
-              border
-              border-solid	
-              border-gray-400
-              rounded-sm
-            '
-        ></input>
+        <Filter  searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
         <Upload />
       </nav>
