@@ -11,7 +11,7 @@ export default async function handleRequest(req: IncomingMessage, res: ServerRes
   if (pathname === '/api/files' && req.method === 'POST') {
     handleFileUpload(req, res);
   } else if (pathname === '/api/users' && req.method === 'GET') {
-    const query = searchParams.get('q');
+    const query = searchParams.get('q') || '';
     handleSearch(res, query);
   } else {
     sendResponse(res, 501, { message: 'Not implemented!'});
