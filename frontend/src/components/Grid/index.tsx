@@ -1,5 +1,26 @@
+'use client'
+
+import { useEffect, useState } from "react";
+
+type UserProps = {
+  name: string;
+  city: string;
+  country: number;
+  favorite_sport: string;
+}
 
 export default function Grid() {
+  const [dataGrid, setDataGrid] = useState<UserProps[]>([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/api/users?q=all')
+     .then(async response => {
+        const { data } = await response.json();
+        setDataGrid(data);
+      })
+     .catch(error => console.log(error));
+  }, []);
+
   return <>
     <section
       className='
@@ -16,31 +37,36 @@ export default function Grid() {
         '
     >
       {
-        Array.from({ length: 12 }, (_, index) => (
+        dataGrid?.map((user, index) => (
           <div
             key={index}
             className='
-                border
-                border-solid	
-                border-gray-400
-                rounded-lg	
-                p-4
-                h-32
+              bg-white
+              border
+              border-solid	
+              border-gray-400
+              rounded-lg	
+              p-4
+              h-32
 
-                flex
-                items-center
-                justify-center
+              flex
+              items-center
+              justify-center
+              flex-col
 
-                lg:w-4/5
-                w-full
-                mx-auto
-                my-0
-
-              '
+              lg:w-4/5
+              w-full
+              mx-auto
+              my-0
+              text-sm
+            '
           >
-            Card
+            {user.name} <br/>
+            {user.city} <br/>
+            {user.country} <br/>
+            {user.favorite_sport}
           </div>
-        ))
+        )) || 'empty'
       }
     </section>
   </>;
