@@ -47,7 +47,7 @@ class FileController {
         result.push(obj);
       });
 
-      const persisResult: { status: number, message: string } = await persistData(result);
+      const persisResult: any = await persistData(result);
 
       sendResponse(res, persisResult.status, { message: persisResult.message })
 
