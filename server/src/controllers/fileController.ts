@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path, { join } from 'node:path';
 import { IncomingMessage, ServerResponse } from 'node:http';
-import sendResponse from '../utils/response';
+import sendResponse from '../infra/helper/response';
 
 export default function handleFileUpload(req: IncomingMessage, res: ServerResponse) {
   let data: Buffer[] = [];

@@ -1,6 +1,6 @@
 import { createServer } from 'node:http';
 
-import handleRequest from './src/server';
+import handleRequest from './src/infra/router';
 
 const port = process.env.PORT || 3000;
 

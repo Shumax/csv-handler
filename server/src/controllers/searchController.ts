@@ -1,7 +1,7 @@
 import path, { join } from 'node:path';
 import { readFileSync } from 'node:fs';
 import { IncomingMessage, ServerResponse } from 'node:http';
-import sendResponse from '../utils/response';
+import sendResponse from '../infra/helper/response';
 
 const __dirname = path.resolve();
 
