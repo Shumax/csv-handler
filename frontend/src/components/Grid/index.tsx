@@ -26,12 +26,9 @@ export default function Grid({ searchTerm }: GridProps ) {
   }, []);
 
   const filteredData = searchTerm ? dataGrid.filter((user) => {
-    console.log(user.name.toLowerCase(), searchTerm.toLowerCase())
-
     for (const value of Object.values(user)) {
-      if (value.toLowerCase().includes(searchTerm.toLowerCase())) return user;
+      if (typeof value === 'string' && value.toLowerCase().includes(searchTerm.toLowerCase())) return user;
     }
-
   }) : dataGrid;
 
   return <>
