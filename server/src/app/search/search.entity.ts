@@ -3,7 +3,7 @@ import { DataCSV } from "../../shared/types";
 export class SearchEntity {
   
   findAll(data: DataCSV) {
-    return data.filter(row => 'name' in row)
+    return data.filter(row => 'city' in row)
   }
 
   findEqual(data: DataCSV, query: string) {
