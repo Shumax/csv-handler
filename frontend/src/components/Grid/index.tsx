@@ -74,8 +74,8 @@ export default function Grid({ searchTerm }: GridProps ) {
               mx-auto
               my-0
               text-sm
-              data-testid="info-card"
             '
+            data-testid="info-card"
           >
             {user.name} <br/>
             {user.city} <br/>
