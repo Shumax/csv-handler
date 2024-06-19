@@ -1,4 +1,4 @@
-import { DataCSV } from "./search.types";
+import { DataCSV } from "../../shared/types";
 
 export class SearchEntity {
   

@@ -1,6 +1,6 @@
 import { SearchEntity } from './search.entity';
 import { SearchRepository } from './search.repository';
-import { DataCSV } from './search.types';
+import { DataCSV } from '../../shared/types';
 
 class SearchController extends SearchEntity {
   

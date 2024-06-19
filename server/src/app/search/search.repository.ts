@@ -1,5 +1,5 @@
 import { getData } from '../../infra/db';
-import { DataCSV } from './search.types';
+import { DataCSV } from '../../shared/types';
 
 export class SearchRepository {
   getDataCsv(): DataCSV  {    
