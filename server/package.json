@@ -6,6 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch --tsconfig ./tsconfig.json ./www.ts",
+    "build": "tsup ./www.ts --out-dir dist",
+    "start": "node dist/www.js",
     "test": "jest"
   },
   "repository": {
@@ -20,6 +22,7 @@
   "homepage": "https://github.com/Shumax/shawandpartners#readme",
   "devDependencies": {
     "@types/node": "^20.14.5",
+    "tsup": "^8.1.0",
     "tsx": "^4.15.6",
     "typescript": "^5.4.5"
   }

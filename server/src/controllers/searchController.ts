@@ -13,6 +13,8 @@ export default function handleSearch( res: ServerResponse, query: string ) {
 
     const results: { [key: string]: string }[] = [];
 
+    if(query == 'all') return sendResponse(res, 200, { data: data.filter(row => 'name' in row) });
+
     data.filter((row) => {
       for(const value of Object.values(row)) {
         if(value.toLowerCase().includes(query.toLowerCase())) return results.push(row);
