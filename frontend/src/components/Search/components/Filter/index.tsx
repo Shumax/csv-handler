@@ -17,8 +17,9 @@ export default function Filter({ searchTerm, setSearchTerm }: FilterProps) {
         border
         border-solid	
         border-gray-400
-        rounded-sm
+        rounded-sm    
       '
+      data-testid="search-input"
       value={searchTerm}
       onChange={handleSearch}
     />

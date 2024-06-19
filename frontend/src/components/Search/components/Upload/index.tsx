@@ -49,6 +49,7 @@ export default function Upload() {
           flex
           items-center
         '
+        data-testid="upload-button"
         onClick={handleClick}
       >
         Upload
