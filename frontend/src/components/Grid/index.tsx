@@ -17,7 +17,7 @@ export default function Grid({ searchTerm }: GridProps ) {
   const [dataGrid, setDataGrid] = useState<UserProps[]>([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/users?q=all')
+    fetch(process.env.NEXT_PUBLIC_API_BASE_URL+'/api/users?q=all')
      .then(async response => {
         const { data } = await response.json();
         setDataGrid(data);

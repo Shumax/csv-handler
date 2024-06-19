@@ -18,7 +18,7 @@ export default function Upload() {
       const formData = new FormData();
       formData.append("file", fileUploaded);
 
-      fetch('http://localhost:3000/api/files', {
+      fetch(process.env.NEXT_PUBLIC_API_BASE_URL+'/api/files', {
         method: "POST",
         body: formData,
       })
