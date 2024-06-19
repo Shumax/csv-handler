@@ -2,8 +2,6 @@
   "name": "server",
   "version": "1.0.0",
   "description": "A api nodejs to handle with data file .csv",
-  "main": "www.js",
-  "type": "module",
   "scripts": {
     "dev": "tsx watch --tsconfig ./tsconfig.json ./www.ts",
     "build": "tsup ./www.ts --out-dir dist",
